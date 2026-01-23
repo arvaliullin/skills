@@ -14,6 +14,13 @@ builder:
 opts:
 	- @go run github.com/arvaliullin/skills/patterns/opts
 
+.PHONY: factory
+factory:
+	- @mkdir -p bin
+	- @g++ -o bin/factory patterns/factory/main.cpp
+	- @./bin/factory
+
 .PHONY: fmt
 fmt:
 	- go fmt ./...
+	- @find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" | xargs clang-format -i
