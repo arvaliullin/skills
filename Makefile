@@ -10,6 +10,10 @@ prototype:
 builder:
 	- @go run github.com/arvaliullin/skills/patterns/builder
 
+.PHONY: opts
+opts:
+	- @go run github.com/arvaliullin/skills/patterns/opts
+
 .PHONY: fmt
 fmt:
 	- go fmt ./...
