@@ -1,4 +1,4 @@
-// Package Паттерн Singleton
+// Singleton
 package main
 
 import (
