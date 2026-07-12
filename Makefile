@@ -1,3 +1,15 @@
+.PHONY: activate
+activate:
+	@source .env/bin/activate
+
+.PHONY: freeze
+freeze:
+	@pip freeze > requirements.txt
+
+.PHONY: install
+install:
+	@pip install -r requirements.txt
+
 .PHONY: singleton
 singleton:
 	- @go run github.com/arvaliullin/skills/patterns/singleton
