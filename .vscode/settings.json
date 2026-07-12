@@ -2,5 +2,9 @@
     "C_Cpp.formatting": "clangFormat",
     "editor.formatOnSave": true,
     "C_Cpp.clang_format_style": "LLVM",
-    "go.diagnostic.vulncheck": "Imports"
+    "go.diagnostic.vulncheck": "Imports",
+    "editor.unicodeHighlight.allowedLocales": {
+        "ru": true
+    },
+    "cSpell.language": "en,ru"
 }
