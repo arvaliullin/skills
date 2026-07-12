@@ -7,5 +7,5 @@
     "editor.unicodeHighlight.allowedLocales": {
         "ru": true
     },
-    "cSpell.language": "en,ru"
+    "cSpell.enabled": false
 }

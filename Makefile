@@ -40,3 +40,15 @@ factory:
 fmt:
 	- go fmt ./...
 	- @find . -name "*.cpp" -o -name "*.hpp" -o -name "*.h" | xargs clang-format -i
+
+.PHONY: up
+up:
+	@docker compose -f deployments/docker-compose.yml up -d
+
+.PHONY: down
+down:
+	@docker compose -f deployments/docker-compose.yml down -v
+
+.PHONY: logs
+logs:
+	@docker compose -f deployments/docker-compose.yml logs -f
