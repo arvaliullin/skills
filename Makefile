@@ -47,7 +47,7 @@ up:
 
 .PHONY: down
 down:
-	@docker compose -f deployments/docker-compose.yml down -v
+	@docker compose -f deployments/docker-compose.yml down
 
 .PHONY: logs
 logs:
