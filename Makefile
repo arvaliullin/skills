@@ -1,3 +1,7 @@
+.PHONY: venv
+venv:
+	@python3 -m venv .env
+
 .PHONY: activate
 activate:
 	@source .env/bin/activate

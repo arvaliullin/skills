@@ -1,4 +1,5 @@
 {
+    "python.defaultInterpreterPath": "${workspaceFolder}/.env/bin/python",
     "C_Cpp.formatting": "clangFormat",
     "editor.formatOnSave": true,
     "C_Cpp.clang_format_style": "LLVM",
