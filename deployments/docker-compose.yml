@@ -17,7 +17,7 @@ services:
       timeout: 5s
       retries: 12
     networks:
-      - elastic
+      - skills-network
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.14.3
@@ -30,11 +30,36 @@ services:
       elasticsearch:
         condition: service_healthy
     networks:
-      - elastic
+      - skills-network
+
+  manticore:
+    image: manticoresearch/manticore:28.4.4
+    container_name: skills-manticore
+    ports:
+      - "9306:9306"
+      - "9308:9308"
+    volumes:
+      - manticore-data:/var/lib/manticore
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h127.0.0.1 -P9306 -e 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks:
+      - skills-network
 
 volumes:
   elasticsearch-data:
+  manticore-data:
 
 networks:
-  elastic:
+  skills-network:
     driver: bridge
