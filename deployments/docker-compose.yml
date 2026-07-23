@@ -26,6 +26,8 @@ services:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - "5601:5601"
+    volumes:
+      - kibana-data:/usr/share/kibana/data
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -58,6 +60,7 @@ services:
 
 volumes:
   elasticsearch-data:
+  kibana-data:
   manticore-data:
 
 networks:
