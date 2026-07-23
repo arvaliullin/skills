@@ -28,6 +28,9 @@ go.work.sum
 # env file
 .env
 
+# Python virtual environment (uv)
+.venv/
+
 # Editor/IDE
 # .idea/
 # .vscode/

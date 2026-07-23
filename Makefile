@@ -1,18 +1,6 @@
-.PHONY: venv
-venv:
-	@python3 -m venv .env
-
-.PHONY: activate
-activate:
-	@source .env/bin/activate
-
-.PHONY: freeze
-freeze:
-	@pip freeze > requirements.txt
-
-.PHONY: install
-install:
-	@pip install -r requirements.txt
+.PHONY: sync
+sync:
+	@uv sync
 
 .PHONY: singleton
 singleton:
