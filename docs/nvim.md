@@ -17,14 +17,13 @@ brew install go
 echo "$(brew --prefix llvm)/bin" >> ~/.zshrc   # или добавьте в PATH вручную
 ```
 
-Серверы языков и отладчик Go:
+Серверы языков, отладчик Go и просмотр Markdown:
 
 ```bash
-go install golang.org/x/tools/gopls@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
+make install-deps
 ```
 
-Оба окажутся в `$(go env GOPATH)/bin` (обычно `~/go/bin`). Этот каталог тоже нужен в `PATH`, иначе Neovim не найдёт `gopls`. Delve конфиг ищет ещё и по пути `~/go/bin/dlv`.
+Команда ставит `gopls`, `dlv` и `glow` в `$(go env GOPATH)/bin` (обычно `~/go/bin`). Этот каталог нужен в `PATH`, иначе Neovim не найдёт `gopls`. Delve конфиг ищет ещё и по пути `~/go/bin/dlv`.
 
 Python (диагностика basedpyright, форматирование ruff):
 

@@ -2,6 +2,12 @@
 sync:
 	@uv sync
 
+.PHONY: install-deps
+install-deps:
+	go install golang.org/x/tools/gopls@latest
+	go install github.com/go-delve/delve/cmd/dlv@latest
+	go install github.com/charmbracelet/glow@latest
+
 .PHONY: singleton
 singleton:
 	- @go run github.com/arvaliullin/skills/patterns/singleton
