@@ -1,0 +1,22 @@
+name: skills
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and push
+        run: |
+          if ! command -v docker >/dev/null 2>&1; then
+            apt-get update
+            apt-get install -y docker.io
+          fi
+          docker build -f docker/skills.Dockerfile \
+            -t disglair.local:3003/skills:${{ gitea.sha }} \
+            -t disglair.local:3003/skills:latest .
+          docker push disglair.local:3003/skills:${{ gitea.sha }}
+          docker push disglair.local:3003/skills:latest

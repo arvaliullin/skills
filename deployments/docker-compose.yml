@@ -34,6 +34,14 @@ services:
     networks:
       - skills-network
 
+  skills:
+    image: disglair.local:3003/skills:latest
+    container_name: skills
+    ports:
+      - "8080:8080"
+    networks:
+      - skills-network
+
   manticore:
     image: manticoresearch/manticore:28.4.4
     container_name: skills-manticore
