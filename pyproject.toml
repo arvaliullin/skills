@@ -3,7 +3,6 @@ name = "skills"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "docker>=7.1.0",
     "elasticsearch~=8.14",
     "ipykernel>=7.3.0",
     "numpy>=2.5.1",

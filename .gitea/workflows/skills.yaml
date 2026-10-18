@@ -14,10 +14,7 @@ jobs:
         run: |
           if ! command -v docker >/dev/null 2>&1; then
             apt-get update
-            apt-get install -y docker.io python3-docker
-          elif ! python3 -c "import docker" >/dev/null 2>&1; then
-            apt-get update
-            apt-get install -y python3-docker
+            apt-get install -y docker.io
           fi
 
       - name: Build
@@ -33,3 +30,6 @@ jobs:
 
       - name: Keep five newest images
         run: python3 scripts/skills/rotate_registry.py
+
+      - name: Garbage collect
+        run: docker exec registry registry garbage-collect /etc/distribution/config.yml --delete-untagged

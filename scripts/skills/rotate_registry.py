@@ -1,8 +1,6 @@
 import json
 import urllib.request
 
-import docker
-
 
 class RegistryRotation:
     def __init__(self, base="http://disglair.local:3003", name="skills", keep=5):
@@ -19,7 +17,6 @@ class RegistryRotation:
 
     def run(self):
         self._delete_old()
-        self._collect()
 
     def _call(self, method, path, headers=None):
         request = urllib.request.Request(
@@ -67,18 +64,6 @@ class RegistryRotation:
                 {"Accept": self.accept},
             )
             print(f"deleted {tag} {digest}")
-
-    def _collect(self):
-        code, output = docker.from_env().containers.get("registry").exec_run(
-            [
-                "registry",
-                "garbage-collect",
-                "/etc/distribution/config.yml",
-                "--delete-untagged",
-            ]
-        )
-        if code != 0:
-            raise SystemExit(output.decode())
 
 
 def main():
