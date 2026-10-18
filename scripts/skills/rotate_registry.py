@@ -73,7 +73,7 @@ class RegistryRotation:
             [
                 "registry",
                 "garbage-collect",
-                "/etc/docker/registry/config.yml",
+                "/etc/distribution/config.yml",
                 "--delete-untagged",
             ]
         )

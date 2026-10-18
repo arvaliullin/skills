@@ -14,10 +14,10 @@ jobs:
         run: |
           if ! command -v docker >/dev/null 2>&1; then
             apt-get update
-            apt-get install -y docker.io
-          fi
-          if ! command -v uv >/dev/null 2>&1; then
-            curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
+            apt-get install -y docker.io python3-docker
+          elif ! python3 -c "import docker" >/dev/null 2>&1; then
+            apt-get update
+            apt-get install -y python3-docker
           fi
 
       - name: Build
@@ -32,4 +32,4 @@ jobs:
           docker push disglair.local:3003/skills:latest
 
       - name: Keep five newest images
-        run: uv run rotate-skills
+        run: python3 scripts/skills/rotate_registry.py
