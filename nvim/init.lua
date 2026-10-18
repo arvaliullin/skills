@@ -58,3 +58,49 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.opt.makeprg = "make"
+
+local function delve_path()
+  if vim.fn.executable("dlv") == 1 then
+    return "dlv"
+  end
+  return vim.fn.expand("~/go/bin/dlv")
+end
+
+require("dap-go").setup({
+  delve = {
+    path = delve_path(),
+  },
+})
+
+local dap = require("dap")
+local dapui = require("dapui")
+dapui.setup()
+
+vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticError" })
+vim.fn.sign_define("DapStopped", { text = ">", texthl = "DiagnosticWarn", linehl = "Visual" })
+
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
+
+vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: start/continue" })
+vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
+vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
+vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
+vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: start/continue" })
+vim.keymap.set("n", "<leader>ds", dap.step_over, { desc = "Debug: step over" })
+vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Debug: step into" })
+vim.keymap.set("n", "<leader>do", dap.step_out, { desc = "Debug: step out" })
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: breakpoint" })
+vim.keymap.set("n", "<leader>du", function()
+  dapui.toggle()
+end, { desc = "Debug: toggle UI" })
