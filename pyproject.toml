@@ -3,8 +3,20 @@ name = "skills"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
+    "docker>=7.1.0",
     "elasticsearch~=8.14",
     "ipykernel>=7.3.0",
     "numpy>=2.5.1",
     "pandas>=3.0.5",
 ]
+
+[project.scripts]
+rotate-skills = "skills.rotate_registry:main"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "skills"
+module-root = "scripts"
