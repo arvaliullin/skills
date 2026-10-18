@@ -20,9 +20,9 @@ opts:
 
 .PHONY: factory
 factory:
-	- @mkdir -p bin
-	- @g++ -o bin/factory patterns/factory/main.cpp
-	- @./bin/factory
+	@cmake -S . -B build
+	@cmake --build build --target factory
+	@./bin/factory
 
 .PHONY: fmt
 fmt:
