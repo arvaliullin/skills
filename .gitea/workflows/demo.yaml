@@ -1,0 +1,11 @@
+name: demo
+
+on: [push]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "event=${{ gitea.event_name }} ref=${{ gitea.ref }} repo=${{ gitea.repository }}"
+      - uses: actions/checkout@v4
+      - run: ls "${{ gitea.workspace }}"
